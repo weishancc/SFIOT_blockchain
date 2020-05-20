@@ -1,0 +1,77 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer2.sfiot.com:
+  orderer3.sfiot.com:
+  orderer4.sfiot.com:
+  orderer5.sfiot.com:
+
+networks:
+  byfn:
+
+services:
+
+  orderer2.sfiot.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer2.sfiot.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer2.sfiot.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer2.sfiot.com/tls/:/var/hyperledger/orderer/tls
+        - orderer2.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+    - 8050:7050
+
+  orderer3.sfiot.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer3.sfiot.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer3.sfiot.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer3.sfiot.com/tls/:/var/hyperledger/orderer/tls
+        - orderer3.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+    - 9050:7050
+
+  orderer4.sfiot.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer4.sfiot.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/tls/:/var/hyperledger/orderer/tls
+        - orderer4.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+    - 10050:7050
+
+  orderer5.sfiot.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer5.sfiot.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/tls/:/var/hyperledger/orderer/tls
+        - orderer5.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+    - 11050:7050
