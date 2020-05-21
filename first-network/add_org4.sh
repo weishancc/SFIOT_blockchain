@@ -223,7 +223,7 @@ function generateChannelArtifacts() {
 }
 
 
-#Update the Org4 Anchor peer
+#Update Org4 Anchor peer
 function updateAnchorPeer() {
   echo "##########################################################"
   echo "###############  Updating Org4 anchor peer ###############"
