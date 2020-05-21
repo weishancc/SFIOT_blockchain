@@ -126,9 +126,10 @@ function networkUp () {
     echo "ERROR !!!! Unable to add Org4 peers on network"
     exit 1
   fi
+
+  updateAnchorPeer
+
   
-  echo
-  echo "#########################DONE!!!################################"
   # finish by running the test
   #docker exec Org4cli ./scripts/testorg4.sh $CHANNEL_NAME $CLI_DELAY $LANGUAGE $CLI_TIMEOUT $VERBOSE
   #if [ $? -ne 0 ]; then
@@ -333,7 +334,6 @@ elif [ "${MODE}" == "generate" ]; then ## Generate Artifacts
   generateCerts
   generateChannelArtifacts
   createConfigTx
-  updateAnchorPeer
 elif [ "${MODE}" == "restart" ]; then ## Restart the network
   networkDown
   networkUp

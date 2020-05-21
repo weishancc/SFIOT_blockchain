@@ -22,7 +22,7 @@ peer channel fetch config config_block.pb -o orderer.sfiot.com:7050 -c $CHANNEL_
 
 configtxlator proto_decode --input config_block.pb --type common.Block | jq .data.data[0].payload.data.config > config.json
 
-jq '.channel_group.groups.Application.groups.Org4MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org4.sfiot.com","port": 14051}]},"version": "0"}}' config.json > modified_anchor_config.json
+jq '.channel_group.groups.Application.groups.Org3MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org4.sfiot.com","port": 14051}]},"version": "0"}}' config.json > modified_anchor_config.json
 
 configtxlator proto_encode --input config.json --type common.Config --output config.pb
 
@@ -37,6 +37,8 @@ echo '{"payload":{"header":{"channel_header":{"channel_id":"'$CHANNEL_NAME'", "t
 configtxlator proto_encode --input anchor_update_in_envelope.json --type common.Envelope --output anchor_update_in_envelope.pb
 
 peer channel update -f anchor_update_in_envelope.pb -c $CHANNEL_NAME -o orderer.sfiot.com:7050 --tls --cafile $ORDERER_CA
+
+docker logs -f peer0.org1.sfiot.com
 
 echo
 echo "========= Finished updating Org4 anchor peer! ========= "

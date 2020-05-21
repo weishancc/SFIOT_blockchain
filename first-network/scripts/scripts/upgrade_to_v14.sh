@@ -1,22 +1,11 @@
 #!/bin/bash
-#
-# Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
 
-# This script is designed to be run in the cli container as the third
-# step of the EYFN tutorial. It installs the chaincode as version 2.0
-# on peer0.org1 and peer0.org2, and uprage the chaincode on the
-# channel to version 2.0, thus completing the addition of org4 to the
-# network previously setup in the BYFN tutorial.
-#
-
-CHANNEL_NAME="mychannel"
-ORDERER_CA="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/sfiot.com/orderers/orderer.sfiot.com/msp/tlscacerts/tlsca.sfiot.com-cert.pem"
 
 # import utils
 . scripts/utils.sh
+
+CHANNEL_NAME="mychannel"
+ORDERER_CA="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/sfiot.com/orderers/orderer.sfiot.com/msp/tlscacerts/tlsca.sfiot.com-cert.pem"
 
 peer channel fetch config config_block.pb -o orderer.sfiot.com:7050 -c $CHANNEL_NAME --tls --cafile $ORDERER_CA
 
@@ -39,7 +28,7 @@ configtxlator proto_encode --input anchor_update_in_envelope.json --type common.
 peer channel update -f anchor_update_in_envelope.pb -c $CHANNEL_NAME -o orderer.sfiot.com:7050 --tls --cafile $ORDERER_CA
 
 echo
-echo "========= Finished updating Org4 anchor peer! ========= "
+echo "===================== Successfully Update Org4 Anchor Peer===================== "
 echo
 
 exit 0

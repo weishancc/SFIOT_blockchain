@@ -69,9 +69,8 @@ CORE_PEER_LOCALMSPID="Org1MSP"
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.sfiot.com/peers/peer0.org1.sfiot.com/tls/ca.crt
 
 peer chaincode install -n sfiotcc -v 1.0 -p github.com/chaincode/sf_iot/
-
-CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.sfiot.com/users/Admin@org2.sfiot.com/msp
-CORE_PEER_ADDRESS=peer0.org2.sfiot.com:9051
+ORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.sfiot.com/users/Admin@org2.sfiot.com/msp
+CCORE_PEER_ADDRESS=peer0.org2.sfiot.com:9051
 CORE_PEER_LOCALMSPID="Org2MSP"
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.sfiot.com/peers/peer0.org2.sfiot.com/tls/ca.crt
 
