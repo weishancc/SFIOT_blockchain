@@ -45,7 +45,7 @@ echo "===================== Upgrading chaincode on peer0.org1 ==================
 upgradeChaincode 0 1
 
 echo
-echo "========= Finished adding Org4 to your first network! ========= "
+echo "========= Finished upgrading chaincode! ========= "
 echo
 
 exit 0

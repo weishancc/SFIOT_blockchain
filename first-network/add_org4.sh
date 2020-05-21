@@ -126,8 +126,9 @@ function networkUp () {
     echo "ERROR !!!! Unable to add Org4 peers on network"
     exit 1
   fi
-
-  echo "\n########################DONE!!!###############################\n"
+  
+  echo
+  echo "#########################DONE!!!################################"
   # finish by running the test
   #docker exec Org4cli ./scripts/testorg4.sh $CHANNEL_NAME $CLI_DELAY $LANGUAGE $CLI_TIMEOUT $VERBOSE
   #if [ $? -ne 0 ]; then
@@ -218,6 +219,19 @@ function generateChannelArtifacts() {
   )
   cp -r crypto-config/ordererOrganizations org4-artifacts/crypto-config/
   echo
+}
+
+
+#Update the Org4 Anchor peer
+function updateAnchorPeer() {
+  echo "##########################################################"
+  echo "###############  Updating Org4 anchor peer ###############"
+  echo "##########################################################"
+  docker exec -it Org4cli scripts/update_org4_ap.sh
+  if [ "$?" -ne 0 ]; then
+    echo "Failed to update Org4 anchor peer..."
+    exit 1
+  fi
 }
 
 
@@ -319,6 +333,7 @@ elif [ "${MODE}" == "generate" ]; then ## Generate Artifacts
   generateCerts
   generateChannelArtifacts
   createConfigTx
+  updateAnchorPeer
 elif [ "${MODE}" == "restart" ]; then ## Restart the network
   networkDown
   networkUp
