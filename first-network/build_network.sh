@@ -60,5 +60,5 @@ generateCerts
 export FABRIC_CFG_PATH=$PWD
 replacePrivateKey
 generateChannelArtifacts
-docker-compose -f docker-compose-cli.yaml -f docker-compose-etcdraft2.yaml -f docker-compose-couch.yaml up -f docker-compose-ca.yaml -d
+docker-compose -f docker-compose-cli.yaml -f docker-compose-etcdraft2.yaml -f docker-compose-couch.yaml -f docker-compose-ca.yaml up -d
 docker exec -it cli ./scripts/peer_add.sh
