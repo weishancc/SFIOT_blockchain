@@ -11,6 +11,8 @@ volumes:
   peer1.org1.sfiot.com:
   peer0.org2.sfiot.com:
   peer1.org2.sfiot.com:
+  peer0.org3.sfiot.com:
+  peer1.org3.sfiot.com:
 
 networks:
   byfn:

@@ -60,5 +60,10 @@ generateCerts
 export FABRIC_CFG_PATH=$PWD
 replacePrivateKey
 generateChannelArtifacts
+
+export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org1.sfiot.com/ca && ls *_sk)
+export BYFN_CA2_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org2.sfiot.com/ca && ls *_sk)
+export BYFN_CA3_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org3.sfiot.com/ca && ls *_sk)
+
 docker-compose -f docker-compose-cli.yaml -f docker-compose-etcdraft2.yaml -f docker-compose-couch.yaml -f docker-compose-ca.yaml up -d
 docker exec -it cli ./scripts/peer_add.sh
