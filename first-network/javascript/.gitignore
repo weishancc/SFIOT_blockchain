@@ -76,5 +76,7 @@ typings/
 # Serverless directories
 .serverless
 
+package-lock.json
+
 wallet
 !wallet/.gitkeep

@@ -1,0 +1,88 @@
+---
+name: first-network-org2
+version: 1.0.0
+client:
+  organization: Org2
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org2:
+    mspid: Org2MSP
+    peers:
+    - peer0.org2.sfiot.com
+    - peer1.org2.sfiot.com
+    certificateAuthorities:
+    - ca.org2.sfiot.com
+peers:
+  peer0.org2.sfiot.com:
+    url: grpcs://localhost:9051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICTzCCAfagAwIBAgIRAJ6fdXvJR6mwientRNqLDawwCgYIKoZIzj0EAwIwcjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFzAVBgNVBAoTDm9yZzIuc2Zpb3QuY29tMR0wGwYDVQQDExR0bHNj
+        YS5vcmcyLnNmaW90LmNvbTAeFw0yMDA2MDkwMzEyMDBaFw0zMDA2MDcwMzEyMDBa
+        MHIxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+        YW4gRnJhbmNpc2NvMRcwFQYDVQQKEw5vcmcyLnNmaW90LmNvbTEdMBsGA1UEAxMU
+        dGxzY2Eub3JnMi5zZmlvdC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJ
+        M87BHuMx5H3JGb33LOR/EHmHgIsowsddaolzWP2Y8ZVmktjxsQW8B0JsbYuHIRQz
+        PSKxJOqNd9D8IrN/EhuXo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYI
+        KwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIFBL
+        XLs9qdHjgQ+6YGfRvvjNyL3Q+RBnaOZ+7XGW4Q5SMAoGCCqGSM49BAMCA0cAMEQC
+        IANlU33MaPheB5pgEYSM2tytuy9p5y5qSTDP7Ki0zU0ZAiBFFjWV1Pb5QC1ryjsY
+        C/12NTl6DuQDT/VpVMhU31OfGw==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.sfiot.com
+      hostnameOverride: peer0.org2.sfiot.com
+  peer1.org2.sfiot.com:
+    url: grpcs://localhost:10051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICTzCCAfagAwIBAgIRAJ6fdXvJR6mwientRNqLDawwCgYIKoZIzj0EAwIwcjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFzAVBgNVBAoTDm9yZzIuc2Zpb3QuY29tMR0wGwYDVQQDExR0bHNj
+        YS5vcmcyLnNmaW90LmNvbTAeFw0yMDA2MDkwMzEyMDBaFw0zMDA2MDcwMzEyMDBa
+        MHIxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+        YW4gRnJhbmNpc2NvMRcwFQYDVQQKEw5vcmcyLnNmaW90LmNvbTEdMBsGA1UEAxMU
+        dGxzY2Eub3JnMi5zZmlvdC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJ
+        M87BHuMx5H3JGb33LOR/EHmHgIsowsddaolzWP2Y8ZVmktjxsQW8B0JsbYuHIRQz
+        PSKxJOqNd9D8IrN/EhuXo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYI
+        KwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIFBL
+        XLs9qdHjgQ+6YGfRvvjNyL3Q+RBnaOZ+7XGW4Q5SMAoGCCqGSM49BAMCA0cAMEQC
+        IANlU33MaPheB5pgEYSM2tytuy9p5y5qSTDP7Ki0zU0ZAiBFFjWV1Pb5QC1ryjsY
+        C/12NTl6DuQDT/VpVMhU31OfGw==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.org2.sfiot.com
+      hostnameOverride: peer1.org2.sfiot.com
+certificateAuthorities:
+  ca.org2.sfiot.com:
+    url: https://localhost:8054
+    caName: ca-org2
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICSDCCAe+gAwIBAgIQTbwcvVWNlvNitmtwXhOZWzAKBggqhkjOPQQDAjBvMQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEXMBUGA1UEChMOb3JnMi5zZmlvdC5jb20xGjAYBgNVBAMTEWNhLm9y
+        ZzIuc2Zpb3QuY29tMB4XDTIwMDYwOTAzMTIwMFoXDTMwMDYwNzAzMTIwMFowbzEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFzAVBgNVBAoTDm9yZzIuc2Zpb3QuY29tMRowGAYDVQQDExFjYS5v
+        cmcyLnNmaW90LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABGYfzwk2qeAT
+        TLEgBIrKSyQtm0IQSFtEoR7+5BpHbuyXUAAdIyQqYl4KEsuvIBkcJE7OG6Bg4yxe
+        Slk3xXm/E5+jbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcD
+        AgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgjvIPvmg8TYXz
+        sOLkL8i2ocfHwihO8nzgZf3Ge6w7rnYwCgYIKoZIzj0EAwIDRwAwRAIgYyy7RdFU
+        bK+7pTmIk9pgo6HyUUKzrrkql7j77vCFuicCIH9+mmGEd2VWxuLwrNT5YI8Wg0nG
+        S6ICylIBWxd0Mtod
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false

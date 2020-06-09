@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 function generateCerts() {
   if [ -d "crypto-config" ]; then
