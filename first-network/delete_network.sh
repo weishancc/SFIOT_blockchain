@@ -12,4 +12,4 @@ docker volume prune
 
 rm -rf connect*
 
-sudo ./byfn.sh down
+#sudo ./byfn.sh down
