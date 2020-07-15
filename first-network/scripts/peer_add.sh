@@ -18,7 +18,7 @@ peer channel update -o orderer.sfiot.com:7050 -c $CHANNEL_NAME -f ./channel-arti
 # Fetch channel.block and copy to other machines
 #peer channel fetch newest mychannel.block -c mychannel --orderer orderer.sfiot.com:705
 
-scp mychannel.block pi@10.1.1.227:~/Desktop/org2_node/first-network/channel-artifacts/
+scp mychannel.block $OTHER_PATH
 
 CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp
 CORE_PEER_ADDRESS=peer0.org1.sfiot.com:7051

@@ -30,10 +30,10 @@ sudo ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./chann
 
 sudo ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
 
-sudo scp -r crypto-config channel-artifacts pi@10.1.1.227:~/Desktop/org2_node/first-network/
+sudo scp -r crypto-config channel-artifacts $OTHER_PATH
 
 #End
 
 #replacePrivateKey
 docker-compose -f docker-compose-cli.yaml up -d
-#docker exec -it cli ./scripts/peer_add.sh
+docker exec -it cli ./scripts/peer_add.sh
