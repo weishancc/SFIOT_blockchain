@@ -10,6 +10,8 @@ service docker restart
 
 docker volume prune
 
-rm -rf connect*
+docker network prune
 
-#sudo ./byfn.sh down
+rm -rf channel-artifacts
+
+sudo ./byfn.sh down

@@ -13,23 +13,25 @@ volumes:
 
 networks:
   byfn:
+    external:
+      name: sfiot-network
 
 services:
 
   orderer4.sfiot.com:
     extends:
-      file:   base/docker-compose-base.yaml
-      service: orderer.sfiot.com
+      file:   base/peer-base.yaml
+      service: orderer-base
     container_name: orderer4.sfiot.com
     networks:
       - byfn
     volumes:
-        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/tls/:/var/hyperledger/orderer/tls
-        - orderer4.sfiot.com:/var/hyperledger/production/orderer
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer4.sfiot.com/tls/:/var/hyperledger/orderer/tls
+      - orderer4.sfiot.com:/var/hyperledger/production/orderer
     ports:
-    - 10050:7050
+      - 10050:7050
 
   orderer5.sfiot.com:
     extends:
@@ -39,12 +41,12 @@ services:
     networks:
       - byfn
     volumes:
-        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/tls/:/var/hyperledger/orderer/tls
-        - orderer5.sfiot.com:/var/hyperledger/production/orderer
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer5.sfiot.com/tls/:/var/hyperledger/orderer/tls
+      - orderer5.sfiot.com:/var/hyperledger/production/orderer
     ports:
-    - 11050:7050
+      - 11050:7050
 
   peer0.org2.sfiot.com:
     container_name: peer0.org2.sfiot.com
@@ -53,10 +55,6 @@ services:
       service: peer0.org2.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      - "orderer.sfiot.com:10.1.1.140"
-      - "orderer2.sfiot.com:10.1.1.140"
-      - "orderer3.sfiot.com:10.1.1.140"
 
   peer1.org2.sfiot.com:
     container_name: peer1.org2.sfiot.com
@@ -65,10 +63,6 @@ services:
       service: peer1.org2.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      - "orderer.sfiot.com:10.1.1.140"
-      - "orderer2.sfiot.com:10.1.1.140"
-      - "orderer3.sfiot.com:10.1.1.140"
 
   cli:
     container_name: cli
@@ -81,8 +75,8 @@ services:
       #- FABRIC_LOGGING_SPEC=DEBUG
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_ID=cli
-      - CORE_PEER_ADDRESS=peer0.org2.sfiot.com:9051
-      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer0.org2.sfiot.com:7051
+      - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.sfiot.com/peers/peer0.org2.sfiot.com/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.sfiot.com/peers/peer0.org2.sfiot.com/tls/server.key
@@ -104,13 +98,3 @@ services:
       - peer1.org2.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      - "orderer.sfiot.com:10.1.1.140"
-      - "orderer2.sfiot.com:10.1.1.140"
-      - "orderer3.sfiot.com:10.1.1.140"
-      - "orderer4.sfiot.com:10.1.1.227"
-      - "orderer5.sfiot.com:10.1.1.227"
-      - "peer0.org1.sfiot.com:10.1.1.140"
-      - "peer1.org1.sfiot.com:10.1.1.140"
-      - "peer0.org2.sfiot.com:10.1.1.227"
-      - "peer1.org2.sfiot.com:10.1.1.227"
