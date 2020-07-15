@@ -10,6 +10,8 @@ service docker restart
 
 docker volume prune
 
+docker network prune
+
 rm -rf connect*
 
 sudo ./byfn.sh down

@@ -16,7 +16,7 @@ function replacePrivateKey() {
 }
 
 export FABRIC_CFG_PATH=$PWD
-export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org1.sfiot.com/ca && ls *_sk)
+#export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/org1.sfiot.com/ca && ls *_sk)
 
 #Testing
 
@@ -35,5 +35,5 @@ sudo scp -r crypto-config channel-artifacts pi@10.1.1.227:~/Desktop/org2_node/fi
 #End
 
 #replacePrivateKey
-docker-compose -f docker-compose-cli.yaml -f docker-compose-etcdraft2.yaml up -d
+docker-compose -f docker-compose-cli.yaml up -d
 #docker exec -it cli ./scripts/peer_add.sh

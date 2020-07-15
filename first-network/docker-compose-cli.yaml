@@ -7,11 +7,15 @@ version: '2'
 
 volumes:
   orderer.sfiot.com:
+  orderer2.sfiot.com:
+  orderer3.sfiot.com:
   peer0.org1.sfiot.com:
   peer1.org1.sfiot.com:
 
 networks:
   byfn:
+    external:
+      name: sfiot-network
 
 services:
 
@@ -23,6 +27,36 @@ services:
     networks:
       - byfn
 
+  orderer2.sfiot.com:
+    extends:
+      file:   base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer2.sfiot.com
+    networks:
+      - byfn
+    volumes:
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer2.sfiot.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer2.sfiot.com/tls/:/var/hyperledger/orderer/tls
+      - orderer2.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+      - 8050:7050
+
+  orderer3.sfiot.com:
+    extends:
+      file:   base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer3.sfiot.com
+    networks:
+      - byfn
+    volumes:
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer3.sfiot.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/sfiot.com/orderers/orderer3.sfiot.com/tls/:/var/hyperledger/orderer/tls
+      - orderer3.sfiot.com:/var/hyperledger/production/orderer
+    ports:
+      - 9050:7050
+
   peer0.org1.sfiot.com:
     container_name: peer0.org1.sfiot.com
     extends:
@@ -30,9 +64,6 @@ services:
       service: peer0.org1.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      - "orderer4.sfiot.com:10.1.1.227"
-      - "orderer5.sfiot.com:10.1.1.227"
 
   peer1.org1.sfiot.com:
     container_name: peer1.org1.sfiot.com
@@ -41,9 +72,6 @@ services:
       service: peer1.org1.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      - "orderer4.sfiot.com:10.1.1.227"
-      - "orderer5.sfiot.com:10.1.1.227"
 
   cli:
     container_name: cli
@@ -74,17 +102,9 @@ services:
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
       - orderer.sfiot.com
+      - orderer2.sfiot.com
+      - orderer3.sfiot.com
       - peer0.org1.sfiot.com
       - peer1.org1.sfiot.com
     networks:
       - byfn
-    extra_hosts:
-      #- "orderer.sfiot.com:10.1.1.140"
-      #- "orderer2.sfiot.com:10.1.1.140"
-      #- "orderer3.sfiot.com:10.1.1.140"
-      - "orderer4.sfiot.com:10.1.1.227"
-      - "orderer5.sfiot.com:10.1.1.227"
-      #- "peer0.org1.sfiot.com:10.1.1.140"
-      #- "peer1.org1.sfiot.com:10.1.1.140"
-      - "peer0.org2.sfiot.com:10.1.1.227"
-      - "peer1.org2.sfiot.com:10.1.1.227"
