@@ -30,6 +30,8 @@ sudo ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./chann
 
 sudo ../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
 
+#Save the OTHER_PATH and copy materials to other machines
+echo $OTHER_PATH > ./channel-artifacts/host.txt
 sudo scp -r crypto-config channel-artifacts $OTHER_PATH
 
 #End
