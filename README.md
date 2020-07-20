@@ -11,7 +11,7 @@
 
 > Tips
 > - For AMD 64-bit architectre, get the docker images from
-<a href="https://hub.docker.com/u/hyperledger" target="_blank">`https://hub.docker.com/u/hyperledger`</a>
+<a href="https://hub.docker.com/u/hyperledger" target="_blank">`https://hub.docker.com/u/hyperledger`</a> (v1.4.1 in this project)
 > - For ARM(AArch64) 64-bit architectre get the docker images from one of below (and thank all of them :D)
 <a href="https://hub.docker.com/u/zakialam" target="_blank">`https://hub.docker.com/u/zakialam`</a>
 <a href="https://hub.docker.com/u/ptunstad" target="_blank">`https://hub.docker.com/u/ptunstad`</a>
@@ -31,6 +31,7 @@
 - `Organizations` (Org1)
 - `Orderers` (Orderer to Orderer3)
 - `Peers` (peer0.org1.sfiot.com / peer1.org1.sfiot.com)
+- `Couchdbs` (couchdb0 / couchdb1)
 
 ### Org2_node
 - `Organizations` (Org2)
@@ -40,7 +41,7 @@
 ---
 
 ## 🏃Running and Testing
-> If divided, run Build Swarm Network on machine1 and Build, Delete BC Network on every machine 
+> If divided, run Build Swarm Network and Build, Delete BC Network on every machine 
 
 ### Build Swarm Network 
 - Step 1 (on Machine1)
@@ -60,7 +61,7 @@ $ docker network create --attachable --driver overlay sfiot-network
 ### Build BC Network 
 ```console
 $ cd first-network
-$ export OTHER_PATH=<your-another-machine host and path>, for example: user@192.X.X.X:~/
+$ export OTHER_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network (only on Machine1)
 $ ./build_network.sh
 ```
 
@@ -69,10 +70,3 @@ $ ./build_network.sh
 $ cd first-network
 $ ./delete_network.sh
 ```
-
-
-
-
-
-
-
