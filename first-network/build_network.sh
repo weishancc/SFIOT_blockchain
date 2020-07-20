@@ -37,5 +37,5 @@ sudo scp -r crypto-config channel-artifacts $OTHER_PATH
 #End
 
 #replacePrivateKey
-docker-compose -f docker-compose-cli.yaml up -d
+docker-compose -f docker-compose-cli.yaml -f docker-compose-couch.yaml up -d
 docker exec -it cli ./scripts/peer_add.sh
