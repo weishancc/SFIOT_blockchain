@@ -20,23 +20,33 @@
 
 ## ✅Architecture
 
-### Master
+## Master (On the same machine)
 - `Consensus` (etcdraft)
 - `Organizations` (Org1 to Org3)
 - `Orderers` (Orderer to Orderer5)
 - `Peers` (Peer0 and Peer1 for every org)
-<img src="https://github.com/weishancc/SFIOT_blockchain/blob/master/master_arch.PNG" width="560" length="900"> 
+
+## Branches (Divided on different machines)
+<img src="https://github.com/weishancc/SFIOT_blockchain/blob/master/Arch.PNG" width="560" length="900"> 
 
 ### Org1_node
+- `Consensus` (etcdraft)
 - `Organizations` (Org1)
 - `Orderers` (Orderer to Orderer3)
 - `Peers` (peer0.org1.sfiot.com / peer1.org1.sfiot.com)
 - `Couchdbs` (couchdb0 / couchdb1)
 
 ### Org2_node
+- `Consensus` (etcdraft)
 - `Organizations` (Org2)
-- `Orderers` (Orderer4 to Orderer5)
+- `Orderers` (Orderer4)
 - `Peers` (peer0.org2.sfiot.com / peer1.org2.sfiot.com)
+
+### Org3_node
+- `Consensus` (etcdraft)
+- `Organizations` (Org3)
+- `Orderers` (Orderer5)
+- `Peers` (peer0.org3.sfiot.com / peer1.org3.sfiot.com)
 
 ---
 
@@ -44,24 +54,35 @@
 > If divided, run Build Swarm Network and Build, Delete BC Network on every machine 
 
 ### Build Swarm Network 
-- Step 1 (on Machine1)
+- Step 1 [on Machine1(PC here)]
 ```console
 $ docker swarm init --advertise-addr <host-1 ip address>
 $ docker swarm join-token manager
 ```
-- Step 2 (on Machine2)
+- Step 2 [on Machine2]
 ```console
-$ <output from join-token manager> --advertise-addr <host n ip>
+$ <output from join-token manager> --advertise-addr <host-2 ip address>
 ```
-- Step 3 (on Machine3)
+- Step 3 [on Machine3]
+```console
+$ <output from join-token manager> --advertise-addr <host-3 ip address>
+```
+- Step 4 [on Machine1]
 ```console
 $ docker network create --attachable --driver overlay sfiot-network
 ```
 
 ### Build BC Network 
+- Step 1 [on Machine1]
 ```console
 $ cd first-network
-$ export OTHER_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network (only on Machine1)
+$ export ORG2_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network 
+$ export ORG3_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network 
+$ ./build_network.sh
+```
+- Step 2 [on both Machine2 and Machine3]
+```console
+$ cd first-network
 $ ./build_network.sh
 ```
 
