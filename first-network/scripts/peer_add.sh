@@ -17,7 +17,8 @@ peer channel update -o orderer.sfiot.com:7050 -c $CHANNEL_NAME -f ./channel-arti
 
 # Fetch channel.block and copy to other machines
 #peer channel fetch newest mychannel.block -c mychannel --orderer orderer.sfiot.com:705
-scp mychannel.block $(cat channel-artifacts/host.txt)/channel-artifacts
+scp mychannel.block $(cat channel-artifacts/host2.txt)/channel-artifacts
+scp mychannel.block $(cat channel-artifacts/host3.txt)/channel-artifacts
 
 CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp
 CORE_PEER_ADDRESS=peer0.org1.sfiot.com:7051
@@ -26,7 +27,7 @@ CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/c
 
 peer chaincode install -n sfiotcc -v 1.0 -p github.com/chaincode/sf_iot/
 
-peer chaincode instantiate -o orderer.sfiot.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/sfiot.com/orderers/orderer.sfiot.com/msp/tlscacerts/tlsca.sfiot.com-cert.pem -C mychannel -n sfiotcc -v 1.0 -c '{"Args":["init"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer')"
+peer chaincode instantiate -o orderer.sfiot.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/sfiot.com/orderers/orderer.sfiot.com/msp/tlscacerts/tlsca.sfiot.com-cert.pem -C mychannel -n sfiotcc -v 1.0 -c '{"Args":["init"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"
 
 sleep 5
 
