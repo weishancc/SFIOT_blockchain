@@ -20,50 +20,6 @@ services:
     ports:
       - 7050:7050
 
-  peer0.org1.sfiot.com:
-    container_name: peer0.org1.sfiot.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.org1.sfiot.com
-      - CORE_PEER_ADDRESS=peer0.org1.sfiot.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.sfiot.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.sfiot.com:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.sfiot.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1.sfiot.com/peers/peer0.org1.sfiot.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org1.sfiot.com/peers/peer0.org1.sfiot.com/tls:/etc/hyperledger/fabric/tls
-        - peer0.org1.sfiot.com:/var/hyperledger/production
-    ports:
-      - 7051:7051
-
-  peer1.org1.sfiot.com:
-    container_name: peer1.org1.sfiot.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org1.sfiot.com
-      - CORE_PEER_ADDRESS=peer1.org1.sfiot.com:8051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.sfiot.com:8052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.sfiot.com:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.sfiot.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1.sfiot.com/peers/peer1.org1.sfiot.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org1.sfiot.com/peers/peer1.org1.sfiot.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.org1.sfiot.com:/var/hyperledger/production
-    ports:
-      - 8051:8051
-
   peer0.org2.sfiot.com:
     container_name: peer0.org2.sfiot.com
     extends:
