@@ -91,3 +91,15 @@ $ ./build_network.sh
 $ cd first-network
 $ ./delete_network.sh
 ```
+
+---
+
+## 🕊Application
+```console
+$ Build up the network first
+$ python3 sfiot_app.py ./fabric-sdk-py && cd fabric-sdk-py
+$ pip3 install virtualenv; make venv
+$ source venv/bin/activate
+$ make install
+$ python3 sfiot_app.py
+```
