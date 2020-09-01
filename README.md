@@ -96,10 +96,16 @@ $ ./delete_network.sh
 
 ## 🕊Application
 ```console
-$ Build up the network first
-$ python3 sfiot_app.py ./fabric-sdk-py && cd fabric-sdk-py
+$ Build up the network first！
+$ cd first-network
+$ mv sfiot_app.py ./fabric-sdk-py
+$ cd fabric-sdk-py
 $ pip3 install virtualenv; make venv
 $ source venv/bin/activate
 $ make install
-$ python3 sfiot_app.py
+$ cd ../scripts && ./app.sh save_data query_all
+```
+### Remove
+```console
+$ rm -rf venv
 ```
