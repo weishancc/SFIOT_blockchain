@@ -1,0 +1,104 @@
+{
+  "name": "sfiot-network",
+  "description": "sfiot-network contains 6 peers (3 orgs), 5 orderer and 1 ca for Python SDK ",
+  "version": "0.1",
+  "client": {
+    "organization": "Org1",
+    "credentialStore": {
+      "path": "/tmp/hfc-kvs",
+      "cryptoStore": {
+        "path": "/tmp/hfc-cvs"
+      },
+      "wallet": "wallet-name"
+    }
+  },
+  "organizations": {
+    "orderer.sfiot.com": {
+      "mspid": "OrdererMSP",
+      "orderers": [
+        "orderer.sfiot.com"
+      ],
+      "certificateAuthorities": [
+        "ca-orderer"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "./crypto-config/ordererOrganizations/sfiot.com/users/Admin@sfiot.com/msp/signcerts/Admin@sfiot.com-cert.pem",
+          "private_key": "./crypto-config/ordererOrganizations/sfiot.com/users/Admin@sfiot.com/msp/keystore/eb9baa7c4985cace1c938dbc284e9dcb7eed374d06deb6d4b00dc40dbf00c461_sk"
+        }
+      }
+    },
+    "org1.sfiot.com": {
+      "mspid": "Org1MSP",
+      "peers": [
+        "peer0.org1.sfiot.com",
+        "peer1.org1.sfiot.com"
+      ],
+      "certificateAuthorities": [
+        "ca-org1"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/signcerts/Admin@org1.sfiot.com-cert.pem",
+          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/keystore/f3bf56d3fb3c7a0c43510e78ea7ba1585d41cca631338d90e42007e46cc32c75_sk"
+        },
+        "User1": {
+          "cert": "./crypto-config/peerOrganizations/org1.sfiot.com/users/User1@org1.sfiot.com/msp/signcerts/User1@org1.sfiot.com-cert.pem",
+          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/User1@org1.sfiot.com/msp/keystore/b324f20e826a35be44a4b7cdd38784a9f1f643d45e9f94e92601a3fedd35781e_sk"
+        }
+      }
+    }
+  },
+  "orderers": {
+    "orderer.sfiot.com": {
+      "url": "localhost:7050",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "orderer.sfiot.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "./crypto-config/ordererOrganizations/sfiot.com/tlsca/tlsca.sfiot.com-cert.pem"
+      }
+    }
+  },
+  "peers": {
+    "peer0.org1.sfiot.com": {
+      "url": "localhost:7051",
+      "eventUrl": "localhost:7053",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer0.org1.sfiot.com",
+        "grpc.http2.keepalive_time": 15
+      },
+      "tlsCACerts": {
+        "path": "./crypto-config/peerOrganizations/org1.sfiot.com/peers/peer0.org1.sfiot.com/msp/tlscacerts/tlsca.org1.sfiot.com-cert.pem"
+      }
+    },
+    "peer1.org1.sfiot.com": {
+      "url": "localhost:8051",
+      "eventUrl": "localhost:8053",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer1.org1.sfiot.com"
+      },
+      "tlsCACerts": {
+        "path": "./crypto-config/peerOrganizations/org1.sfiot.com/peers/peer1.org1.sfiot.com/msp/tlscacerts/tlsca.org1.sfiot.com-cert.pem"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca-org1": {
+      "url": "https://localhost:7054",
+      "grpcOptions": {
+        "verify": true
+      },
+      "tlsCACerts": {
+        "path": "./crypto-config/peerOrganizations/org1.sfiot.com/ca/org1.sfiot.com-cert.pem"
+      },
+      "registrar": [
+        {
+          "enrollId": "admin",
+          "enrollSecret": "adminpw"
+        }
+      ]
+    }
+  }
+}

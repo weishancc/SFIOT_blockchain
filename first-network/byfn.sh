@@ -291,7 +291,7 @@ function networkDown() {
     #Cleanup images
     removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
-    rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ./org4-artifacts/crypto-config/ channel-artifacts/org4.json
+    rm -rf channel-artifacts/*.block channel-artifacts/*.tx channel-artifacts/*.txt ./org4-artifacts/crypto-config/ channel-artifacts/org4.json
     # remove the docker-compose yaml file that was customized to the sfiot
     rm -f docker-compose-e2e.yaml
   fi
