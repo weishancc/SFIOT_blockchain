@@ -16,11 +16,11 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-org1
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.sfiot.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${BYFN_CA1_PRIVATE_KEY}
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/56aef39f6591cafd01be472bc2528de77419c4a5c57dc9c4bd05a1f401a761e6_sk
       - FABRIC_CA_SERVER_PORT=8054
     ports:
       - "8054:8054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org1.sfiot.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/${BYFN_CA1_PRIVATE_KEY} -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org1.sfiot.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/56aef39f6591cafd01be472bc2528de77419c4a5c57dc9c4bd05a1f401a761e6_sk -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/org1.sfiot.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca_peerOrg1

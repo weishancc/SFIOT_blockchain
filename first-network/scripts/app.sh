@@ -7,6 +7,7 @@ function replacePrivateKey() {
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
   cd ..
+  cp network-template.json network.json
   sed -i $OPTS "s/ORDERER_KEY/${PRIV_KEY}/g" network.json
 
   cd ./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/keystore/

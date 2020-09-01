@@ -24,7 +24,7 @@
       "users": {
         "Admin": {
           "cert": "./crypto-config/ordererOrganizations/sfiot.com/users/Admin@sfiot.com/msp/signcerts/Admin@sfiot.com-cert.pem",
-          "private_key": "./crypto-config/ordererOrganizations/sfiot.com/users/Admin@sfiot.com/msp/keystore/371100ab34377415b39a6654e16006a3bec1e82d4877efc384562b2e3ff566f7_sk"
+          "private_key": "./crypto-config/ordererOrganizations/sfiot.com/users/Admin@sfiot.com/msp/keystore/ORDERER_KEY"
         }
       }
     },
@@ -40,11 +40,11 @@
       "users": {
         "Admin": {
           "cert": "./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/signcerts/Admin@org1.sfiot.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/keystore/377f8b6e0a58b4873642e30b58d7458f34c32aeb585058592402f43edb2abb78_sk"
+          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/Admin@org1.sfiot.com/msp/keystore/ORG1A_KEY"
         },
         "User1": {
           "cert": "./crypto-config/peerOrganizations/org1.sfiot.com/users/User1@org1.sfiot.com/msp/signcerts/User1@org1.sfiot.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/User1@org1.sfiot.com/msp/keystore/2f95870a8a4663f62018696dd52a3837e3974279f5a078a92ee46fb47ca26dc3_sk"
+          "private_key": "./crypto-config/peerOrganizations/org1.sfiot.com/users/User1@org1.sfiot.com/msp/keystore/ORG1U_KEY"
         }
       }
     }
