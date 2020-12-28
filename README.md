@@ -1,6 +1,6 @@
 # Edge-based Blockchain Design in SFIOT Project (Smart Gateway)
 
-> Including blockchain design and configures using <a href="https://github.com/hyperledger/fabric" target="_blank">`Hyperledger Fabric`</a> divided on computer and raspberry pi 4
+> This repo includes blockchain design and configuration using <a href="https://github.com/hyperledger/fabric" target="_blank">`Hyperledger Fabric`</a>, where the blockchain network are divided on x64 and arm64 architectu(reraspberry pi 4) multi-arch. What's more, sf_iot folder simulates complete flow from IoT device to blockchain storage.
 
 
 ## 🔨Prerequisites
@@ -20,13 +20,13 @@
 
 ## ✅Architecture
 
-## Master (On the same machine)
+## Master (All organizations on the same machine, where binary tool is for x64 as default)
 - `Consensus` (etcdraft)
 - `Organizations` (Org1 to Org3)
 - `Orderers` (Orderer to Orderer5)
 - `Peers` (Peer0 and Peer1 for every org)
 
-## Branches (Divided on different machines)
+## Branches (Divide organizations on different machines)
 <img src="https://github.com/weishancc/SFIOT_blockchain/blob/master/Arch.PNG" width="560" length="900"> 
 
 ### Org1_node
@@ -51,36 +51,40 @@
 ---
 
 ## 🏃Running and Testing
-> If divided, run Build Swarm Network and Build, Delete BC Network on every machine 
+> If divided, run Build Swarm Network and Build, Delete BC Network on every machine, otherwise, simply run 
+```console
+$ cd first-network
+$ ./build_network.sh
+```
 
 ### Build Swarm Network 
-- Step 1 [on Machine1(PC here)]
+- Step1 [on Machine1(x64)]
 ```console
 $ docker swarm init --advertise-addr <host-1 ip address>
 $ docker swarm join-token manager
 ```
-- Step 2 [on Machine2]
+- Step2 [on Machine2(arm64)]
 ```console
 $ <output from join-token manager> --advertise-addr <host-2 ip address>
 ```
-- Step 3 [on Machine3]
+- Step3 [on Machine3(arm64)]
 ```console
 $ <output from join-token manager> --advertise-addr <host-3 ip address>
 ```
-- Step 4 [on Machine1]
+- Step4 [on Machine1]
 ```console
 $ docker network create --attachable --driver overlay sfiot-network
 ```
 
 ### Build BC Network 
-- Step 1 [on Machine1]
+- Step5 [on Machine1]
 ```console
 $ cd first-network
 $ export ORG2_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network 
 $ export ORG3_PATH="your-another-machine host and project's path", for example: user@X.X.X.X:~/first-network 
 $ ./build_network.sh
 ```
-- Step 2 [on both Machine2 and Machine3]
+- Step6 [on both Machine2 and Machine3]
 ```console
 $ cd first-network
 $ ./build_network.sh
